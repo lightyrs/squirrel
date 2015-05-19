@@ -15,13 +15,15 @@ gem 'oj'
 gem 'oj_mimic_json'
 gem 'sidekiq'
 gem 'pismo', git: 'https://github.com/tuantranf/pismo.git'
+gem 'metainspector'
+gem 'chewy'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
 end
 
 group :development do
-  gem 'thin'
+  gem 'puma'
   gem 'foreman',                                           require: false
   gem 'leader', git: 'https://github.com/halo/leader.git', require: false
   gem 'better_errors'
