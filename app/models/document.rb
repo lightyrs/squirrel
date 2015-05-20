@@ -24,7 +24,8 @@ class Document < ActiveRecord::Base
 
   belongs_to :classification, required: true
 
-  validates :url, presence: true, uniqueness: { scope: :classification_id }
+  validates :url,  presence: true, uniqueness: { scope: :classification_id }
+  validates :body, presence: true
 
   before_validation :fetch_document, on: :create
 

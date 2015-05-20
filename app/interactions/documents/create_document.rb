@@ -10,8 +10,12 @@ class CreateDocument < ActiveInteraction::Base
                               content_type_id: content_type_model.id
                             ).try(:first)
 
-    unless classification_model.nil?
-      Document.create(url: url, classification_id: classification_model.id)
+    if classification_model.nil?
+      document = nil
+    else
+      document = Document.create(url: url, classification_id: classification_model.id)
     end
+
+    document
   end
 end

@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150519231016) do
     t.string   "content_type_header"
     t.string   "charset"
     t.string   "og_type"
-    t.text     "body"
+    t.text     "body",                null: false
     t.text     "body_html"
     t.integer  "classification_id",   null: false
     t.datetime "created_at"

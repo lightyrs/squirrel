@@ -11,7 +11,7 @@ class CreateDocuments < ActiveRecord::Migration
       t.string     :content_type_header
       t.string     :charset
       t.string     :og_type
-      t.text       :body
+      t.text       :body,                        null: false
       t.text       :body_html
       t.references :classification, index: true, null: false
       t.timestamps
