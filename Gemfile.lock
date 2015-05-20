@@ -62,6 +62,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    annotate (2.6.8)
+      activerecord (>= 3.2, <= 4.3)
+      rake (~> 10.4)
     arel (6.0.0)
     awesome_print (1.6.1)
     bcrypt (3.1.10)
@@ -277,6 +280,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  annotate
   awesome_print
   bcrypt (~> 3.1.7)
   better_errors
