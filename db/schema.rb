@@ -40,11 +40,14 @@ ActiveRecord::Schema.define(version: 20150519231016) do
     t.string   "title"
     t.text     "description"
     t.string   "best_image_url"
+    t.string   "favicon_url"
     t.string   "author"
     t.string   "keywords",                         array: true
     t.string   "content_type_header"
     t.string   "charset"
     t.string   "og_type"
+    t.text     "body"
+    t.text     "body_html"
     t.integer  "classification_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"

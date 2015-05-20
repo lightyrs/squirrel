@@ -1,4 +1,4 @@
-content_types = %w(text html image video audio multimedia)
+content_types = %w(text image video audio multimedia)
 
 text_classifications = [
   'News',
@@ -97,11 +97,8 @@ multimedia_classifications = [
   'Advertisement'
 ]
 
-html_classifications = [text_classifications + image_classifications + video_classifications + audio_classifications + multimedia_classifications].flatten
-
 classifications = {
   text:       text_classifications,
-  html:       html_classifications,
   image:      image_classifications,
   video:      video_classifications,
   audio:      audio_classifications,

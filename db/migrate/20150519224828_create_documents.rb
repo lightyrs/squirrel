@@ -5,11 +5,14 @@ class CreateDocuments < ActiveRecord::Migration
       t.string     :title
       t.text       :description
       t.string     :best_image_url
+      t.string     :favicon_url
       t.string     :author
       t.string     :keywords, array: true
       t.string     :content_type_header
       t.string     :charset
       t.string     :og_type
+      t.text       :body
+      t.text       :body_html
       t.references :classification, index: true, null: false
       t.timestamps
     end
