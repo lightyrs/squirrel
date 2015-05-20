@@ -33,6 +33,8 @@ class Document < ActiveRecord::Base
                   :author, :keywords, :content_type_header, :charset,
                   :og_type, :classification_id, :body, :body_html
 
+  update_index 'documents#document', :self
+
   private
 
   def fetch_document
