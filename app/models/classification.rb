@@ -18,4 +18,8 @@ class Classification < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { scope: :content_type_id }
 
   attr_accessible :name, :description, :content_type_id
+
+  def content_type_name
+    content_type.name
+  end
 end

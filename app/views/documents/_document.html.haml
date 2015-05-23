@@ -1,0 +1,11 @@
+%article.document.overflow-hidden.bg-white.border.rounded.mb3
+  .p2.white.bg-blue
+    %h1.h2.m0= link_to document.title, document, class: 'white'
+  .p2
+    - if controller.action_name == "show"
+      .p1= document.body_html.html_safe
+    - else
+      %p.m0= description(document)
+  .clearfix.p2.bg-darken-1
+    %p.m0.h5.left= document.created_at.to_formatted_s
+    %p.m0.h5.right= classification_tags(document)

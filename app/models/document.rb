@@ -35,6 +35,12 @@ class Document < ActiveRecord::Base
 
   update_index 'documents#document', :self
 
+  delegate :content_type_name, to: :classification
+
+  def classification_name
+    classification.name
+  end
+
   private
 
   def fetch_document
