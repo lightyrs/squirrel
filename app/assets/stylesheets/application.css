@@ -14,11 +14,3 @@
  *= require basscss
  *= require_self
  */
-
-body {
-  padding-bottom: 100px;
-}
-
-a {
-  cursor: pointer;
-}

@@ -1,1 +1,5 @@
 = render @documents
+
+.kaminari.center.py2
+  .mb2= page_entries_info @documents
+  = paginate @documents, window: 1, left: 1, right: 1

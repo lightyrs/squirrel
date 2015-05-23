@@ -20,6 +20,7 @@ gem 'sidekiq'
 gem 'pismo', git: 'https://github.com/tuantranf/pismo.git'
 gem 'metainspector'
 gem 'chewy'
+gem 'kaminari'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

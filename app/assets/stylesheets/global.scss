@@ -1,0 +1,31 @@
+body {
+  padding-bottom: 100px;
+}
+
+a {
+  cursor: pointer;
+}
+
+.kaminari {
+
+  a,
+  span,
+  .button,
+  .button-transparent {
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .page {
+
+    &.current {
+
+      .button-transparent::before {
+        background-color: #FFDC00;
+        opacity: .0625;
+      }
+    }
+  }
+}
