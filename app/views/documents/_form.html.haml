@@ -4,7 +4,7 @@
   = f.input_field :url
 
   = f.label       :classification, "Classification"
-  = f.input_field :classification, collection: Classification.all.group_by { |c| c.content_type.name.titleize }, prompt: "Select a Classification", as: :grouped_select, group_method: :last, group_label_method: :first, label_method: Proc.new { |obj| obj.name.titleize }
+  = f.input_field :classification, collection: Classification.all.group_by { |c| c.content_type.name.titleize }, prompt: "Select a Classification", as: :grouped_select, group_method: :last, group_label_method: :first, label_method: Proc.new { |obj| obj.name.titleize }, value_method: :id
 
   .center.py2
     = f.button :submit

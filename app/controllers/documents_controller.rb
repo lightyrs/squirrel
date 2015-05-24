@@ -21,14 +21,17 @@ class DocumentsController < ApplicationController
   end
 
   def new
-    @document = Document.new
+    @document = CreateDocument.new
   end
 
   def create
-    CreateDocument.run!(
-      url: params[:document][:url],
-      content_type: params[:document][:content_type],
-      classification: params[:document][:classification]
-    )
+    outcome = CreateDocument.run(params.fetch(:document, {}))
+
+    if outcome.valid?
+      redirect_to outcome.result
+    else
+      @document = outcome
+      render :new
+    end
   end
 end

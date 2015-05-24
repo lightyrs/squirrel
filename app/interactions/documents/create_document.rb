@@ -1,19 +1,17 @@
 class CreateDocument < ActiveInteraction::Base
 
-  string    :url, :content_type, :classification
-  validates :url, :content_type, :classification, presence: true
+  string    :url, :classification
+  validates :url, :classification, presence: true
+
+  def to_model
+    Document.new
+  end
 
   def execute
-    content_type_model    = ContentType.find_by(name: content_type)
-    classification_model  = Classification.where(
-                              name: classification,
-                              content_type_id: content_type_model.id
-                            ).try(:first)
+    document = Document.new(url: url, classification_id: classification)
 
-    if classification_model.nil?
-      document = nil
-    else
-      document = Document.create(url: url, classification_id: classification_model.id)
+    unless document.save
+      errors.merge!(document.errors)
     end
 
     document
