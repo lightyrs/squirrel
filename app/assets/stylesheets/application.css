@@ -12,5 +12,6 @@
  *
  *= require_tree .
  *= require basscss
+ *= require bassdock
  *= require_self
  */

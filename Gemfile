@@ -21,6 +21,7 @@ gem 'pismo', git: 'https://github.com/tuantranf/pismo.git'
 gem 'metainspector'
 gem 'chewy'
 gem 'kaminari'
+gem 'simple_form'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

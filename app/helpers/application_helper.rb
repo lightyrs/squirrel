@@ -4,9 +4,9 @@ module ApplicationHelper
     html = ""
     groups = Classification.all.group_by { |c| c.content_type.name }
     groups.each do |content_type, group|
-      html += "<li class='content-type mt1'><strong>#{content_type.titleize}</strong></li>"
+      html += "<li class='mt2'><a class='block button button-transparent blue' href='/documents?content_type=#{content_type}'>#{content_type.titleize}</a></li>"
       group.each do |classification|
-        html += "<li><a href='/documents?classification_id=#{classification.id}'>#{classification.name.titleize}</a></li>"
+        html += "<li><a class='button block button-transparent' href='/documents?classification_id=#{classification.id}'>#{classification.name.titleize}</a></li>"
       end
     end
     html.html_safe

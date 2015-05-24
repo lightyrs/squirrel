@@ -1,0 +1,15 @@
+%header.mt0.mb4
+  %h1.h1.h1-responsive.caps.m0 Squirrel
+  %hr.mt1.mb1.b2.border-aqua/
+  .h5.bold.mb3
+    = link_to 'Home', root_path, class: 'button mr1 button-link blue'
+    - if controller.controller_name == 'documents'
+      \/
+      - if @heading.nil?
+        %span.h5.bold.inline-block.ml1{:style => "vertical-align:middle"} Documents
+      - else
+        &nbsp;
+        = link_to 'Documents', documents_path, class: 'button m11 mr1 button-link blue'
+      - if controller.action_name == 'index' && @heading.present?
+        \/
+        %span.h5.bold.inline-block.ml1{:style => "vertical-align:middle"}= @heading
