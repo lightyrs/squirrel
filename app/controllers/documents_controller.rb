@@ -23,6 +23,7 @@ class DocumentsController < ApplicationController
   end
 
   def new
+    breadcrumb 'New', new_document_path, force: true
     @document = CreateDocument.new
   end
 
@@ -32,6 +33,7 @@ class DocumentsController < ApplicationController
     if outcome.valid?
       redirect_to outcome.result
     else
+      breadcrumb 'New', new_document_path, force: true
       @document = outcome
       render :new
     end
