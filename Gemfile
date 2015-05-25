@@ -3,14 +3,9 @@ ruby '2.2.2'
 
 gem 'rails', '4.2.1'
 gem 'pg'
-gem 'haml-rails', '~> 0.9'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'jquery-rails'
-gem 'bower-rails'
-gem 'active_model_serializers'
+gem 'chewy'
 gem 'bcrypt', '~> 3.1.7'
+gem 'active_model_serializers'
 gem 'protected_attributes'
 gem 'active_interaction'
 gem 'annotate'
@@ -19,10 +14,22 @@ gem 'oj_mimic_json'
 gem 'sidekiq'
 gem 'pismo', git: 'https://github.com/tuantranf/pismo.git'
 gem 'metainspector'
-gem 'chewy'
 gem 'loaf'
 gem 'kaminari'
 gem 'simple_form'
+
+####################################
+## Assets
+####################################
+
+gem 'haml-rails', '~> 0.9'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.1.0'
+gem 'jquery-rails'
+gem 'bower-rails'
+gem 'inline_svg'
+gem 'bourbon'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
