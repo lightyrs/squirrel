@@ -1,15 +1,17 @@
 class DocumentsController < ApplicationController
 
+  breadcrumb 'Documents', :documents_path
+
   def index
     docs = if params[:classification_id].present?
-      @heading = Classification.find(params[:classification_id]).name.titleize rescue nil
+      @crumb = Classification.find(params[:classification_id]).name.titleize rescue nil
       Document.where(classification_id: params[:classification_id])
     elsif params[:content_type].present?
-      @heading = params[:content_type].titleize rescue nil
+      @crumb = params[:content_type].titleize rescue nil
       content_type = ContentType.find_by(name: params[:content_type])
       Document.where(classification_id: content_type.classifications.pluck(:id))
     else
-      @heading = nil
+      @crumb = "All"
       Document
     end
 

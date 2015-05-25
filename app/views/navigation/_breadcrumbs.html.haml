@@ -1,0 +1,15 @@
+.h5.bold.mb3
+  - count = breadcrumbs.count
+  - breadcrumbs.each_with_index do |(name, url, styles), i|
+    - if name == "Home"
+      - if styles == "selected" && i == (count - 1)
+        %span.h5.bold.inline-block.mr1{style: "vertical-align:middle"}= name
+      - else
+        = link_to name, url, class: "#{styles} button mr1 button-link blue"
+        %span /
+    - else
+      - if styles == "selected" && i == (count - 1)
+        %span.h5.bold.inline-block.ml1{style: "vertical-align:middle"}= name
+      - else
+        = link_to name, url, class: "#{styles} button mr1 ml1 button-link blue"
+        %span /

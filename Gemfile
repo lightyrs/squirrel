@@ -20,6 +20,7 @@ gem 'sidekiq'
 gem 'pismo', git: 'https://github.com/tuantranf/pismo.git'
 gem 'metainspector'
 gem 'chewy'
+gem 'loaf'
 gem 'kaminari'
 gem 'simple_form'
 
