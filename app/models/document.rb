@@ -13,7 +13,7 @@
 #  content_type_header :string
 #  charset             :string
 #  og_type             :string
-#  body                :text
+#  body                :text             not null
 #  body_html           :text
 #  classification_id   :integer          not null
 #  created_at          :datetime
