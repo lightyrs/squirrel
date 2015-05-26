@@ -1,4 +1,4 @@
-@include font-face(icomoon, 'icomoon/icomoon', $asset-pipeline: true);
+@include font-face(icomoon, 'icomoon/icomoon', $asset-pipeline: true, $file-formats: eot woff ttf svg);
 
 [class^="icon-"], [class*=" icon-"] {
   font-family: 'icomoon';

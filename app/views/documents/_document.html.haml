@@ -7,5 +7,8 @@
     - else
       %p.m0= description(document)
   .clearfix.p2.bg-darken-1
-    %p.m0.h5.left= document.created_at.to_formatted_s
+    %p.m0.h5.left
+      %span= document.created_at.to_formatted_s
+      %span.italic.px1> via
+      %span.bold= link_to document.sitename, "/documents?sitename=#{document.sitename}"
     %p.m0.h5.right= classification_tags(document)

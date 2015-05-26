@@ -3,19 +3,10 @@ class DocumentsController < ApplicationController
   breadcrumb 'Documents', :documents_path
 
   def index
-    docs = if params[:classification_id].present?
-      @crumb = Classification.find(params[:classification_id]).name.titleize rescue nil
-      Document.where(classification_id: params[:classification_id])
-    elsif params[:content_type].present?
-      @crumb = params[:content_type].titleize rescue nil
-      content_type = ContentType.find_by(name: params[:content_type])
-      Document.where(classification_id: content_type.classifications.pluck(:id))
-    else
-      @crumb = "All"
-      Document
-    end
+    outcome = ListDocuments.run(params: params)
 
-    @documents = docs.order("created_at DESC").includes(classification: [:content_type]).page(params[:page])
+    @crumb     = outcome.result[:crumb]
+    @documents = outcome.result[:documents]
   end
 
   def show
