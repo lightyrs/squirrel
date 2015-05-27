@@ -18,6 +18,7 @@ gem 'metainspector'
 gem 'loaf'
 gem 'kaminari'
 gem 'simple_form'
+gem 'sinatra', require: nil
 
 ####################################
 ## Assets

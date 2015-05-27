@@ -6,7 +6,9 @@ class CreateDocumentWorker
     30 * (count + 1) # (i.e. 30, 60, 90, 120)
   end
 
-  def perform(url:, content_type:, classification:)
-    CreateDocument.run!(url: url, content_type: content_type, classification: classification)
+  def perform(url, classification_id)
+    Chewy.strategy(:sidekiq) do
+      CreateDocument.run!(url: url, classification: classification_id)
+    end
   end
 end

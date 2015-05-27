@@ -1,7 +1,14 @@
 = simple_form_for document, html: { class: "clearfix" } do |f|
 
-  = f.label       :url, "URL"
-  = f.input_field :url
+  - if @batch
+
+    = f.label       :urls, "URLs"
+    = f.input_field :urls, as: :text
+
+  - else
+
+    = f.label       :url, "URL"
+    = f.input_field :url
 
   = f.label       :classification, "Classification"
   = f.input_field :classification, collection: Classification.all.group_by { |c| c.content_type.name.titleize }, prompt: "Select a Classification", as: :grouped_select, group_method: :last, group_label_method: :first, label_method: Proc.new { |obj| obj.name.titleize }, value_method: :id

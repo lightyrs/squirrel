@@ -32,9 +32,9 @@ class Document < ActiveRecord::Base
   attr_accessible :url, :title, :description, :best_image_url, :favicon_url,
                   :author, :keywords, :content_type_header, :charset,
                   :og_type, :classification_id, :body, :body_html,
-                  :classification_string, :content_type_string
+                  :classification_string, :content_type_string, :urls
 
-  attr_accessor :classification_string, :content_type_string
+  attr_accessor :classification_string, :content_type_string, :urls
 
   update_index 'documents#document', :self
 

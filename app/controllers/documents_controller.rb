@@ -15,18 +15,33 @@ class DocumentsController < ApplicationController
 
   def new
     breadcrumb 'New', new_document_path, force: true
+    @batch = params[:batch]
     @document = CreateDocument.new
   end
 
   def create
-    outcome = CreateDocument.run(params.fetch(:document, {}))
+    if document_params[:urls] && document_params[:urls].present?
+      document_params[:urls].lines.map(&:chomp).each do |url|
+        CreateDocumentWorker.perform_async(url, document_params[:classification])
+      end
 
-    if outcome.valid?
-      redirect_to outcome.result
+      redirect_to documents_path
     else
-      breadcrumb 'New', new_document_path, force: true
-      @document = outcome
-      render :new
+      outcome = CreateDocument.run(document_params)
+
+      if outcome.valid?
+        redirect_to outcome.result
+      else
+        breadcrumb 'New', new_document_path, force: true
+        @document = outcome
+        render :new
+      end
     end
+  end
+
+  private
+
+  def document_params
+    params.fetch(:document, {})
   end
 end

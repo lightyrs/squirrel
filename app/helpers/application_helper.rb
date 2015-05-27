@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def body_class
+    "#{controller.controller_name} #{controller.controller_name}-#{controller.action_name}"
+  end
+
   def classifications_nav
     html = ""
     groups = Classification.all.group_by { |c| c.content_type.name }

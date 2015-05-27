@@ -1,5 +1,7 @@
 class CreateDocument < ActiveInteraction::Base
 
+  array     :urls, default: []
+
   string    :url, :classification
   validates :url, :classification, presence: true
 
