@@ -36,6 +36,8 @@ class Document < ActiveRecord::Base
 
   attr_accessor :classification_string, :content_type_string, :urls
 
+  counter_culture :classification
+
   update_index 'documents#document', :self
 
   delegate :content_type_name, to: :classification

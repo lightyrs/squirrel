@@ -64,6 +64,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    after_commit_action (1.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
     annotate (2.6.8)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
@@ -101,6 +104,10 @@ GEM
     colorize (0.7.7)
     columnize (0.9.0)
     connection_pool (2.2.0)
+    counter_culture (0.1.33)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      after_commit_action (~> 1.0.0)
     crass (1.0.2)
     debug_inspector (0.0.2)
     domain_name (0.5.24)
@@ -312,6 +319,7 @@ DEPENDENCIES
   clipboard
   coffee-rails (~> 4.1.0)
   colorize
+  counter_culture
   foreman
   haml-rails (~> 0.9)
   inline_svg
