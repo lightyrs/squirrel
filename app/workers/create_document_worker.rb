@@ -7,8 +7,6 @@ class CreateDocumentWorker
   end
 
   def perform(url, classification_id)
-    Chewy.strategy(:sidekiq) do
-      CreateDocument.run!(url: url, classification: classification_id)
-    end
+    CreateDocument.run!(url: url, classification: classification_id)
   end
 end
