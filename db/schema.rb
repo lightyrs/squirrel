@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601081555) do
+ActiveRecord::Schema.define(version: 20150610012304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "classifications", force: :cascade do |t|
-    t.string   "name",                        null: false
+    t.string   "name",                           null: false
     t.text     "description"
-    t.integer  "content_type_id",             null: false
+    t.integer  "content_type_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "documents_count", default: 0, null: false
+    t.integer  "documents_count", default: 0,    null: false
+    t.integer  "min_bytesize",    default: 3000
   end
 
   add_index "classifications", ["content_type_id"], name: "index_classifications_on_content_type_id", using: :btree

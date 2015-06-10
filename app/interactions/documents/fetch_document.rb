@@ -5,16 +5,16 @@ class FetchDocument < ActiveInteraction::Base
   def execute
     if @doc = Pismo::Document.new(document.url)
 
-      @page = MetaInspector.new(document.url)
+      @page = MetaInspector.new(document.url) rescue Hash.new('')
 
       if document.persisted?
         refresh_attributes
       else
-        if @doc.body.bytesize <= 3000
+        if @doc.body.bytesize <= document.classification.min_bytesize
           @doc = Pismo::Document.new(document.url, reader: :cluster)
         end
 
-        if @doc.body.bytesize <= 3000
+        if @doc.body.bytesize <= document.classification.min_bytesize
           puts "Invalid Document.".red
         else
           assign_attributes
