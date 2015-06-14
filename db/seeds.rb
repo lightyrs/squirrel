@@ -143,7 +143,8 @@ text_classifications = [
   'e-book',
   'advertisement',
   'petition',
-  'satire'
+  'satire',
+  'open letter'
 ]
 
 image_classifications = [
