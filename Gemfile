@@ -20,6 +20,7 @@ gem 'kaminari'
 gem 'simple_form'
 gem 'sinatra', require: nil
 gem 'counter_culture'
+gem 'hash_dot'
 
 ####################################
 ## Assets

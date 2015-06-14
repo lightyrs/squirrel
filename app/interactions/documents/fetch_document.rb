@@ -3,19 +3,25 @@ class FetchDocument < ActiveInteraction::Base
   object :document
 
   def execute
-    if @doc = Pismo::Document.new(document.url)
+    py_doc = `python extractor.py #{document.url}` rescue ""
 
-      @page = MetaInspector.new(document.url) rescue Hash.new('')
+    if @doc = Oj.load(py_doc)
+
+      @page = MetaInspector.new(document.url) rescue nil
 
       if document.persisted?
         refresh_attributes
       else
         if @doc.body.bytesize <= document.classification.min_bytesize
+          @doc = Pismo::Document.new(document.url)
+        end
+
+        if @doc.body.bytesize <= document.classification.min_bytesize
           @doc = Pismo::Document.new(document.url, reader: :cluster)
         end
 
         if @doc.body.bytesize <= document.classification.min_bytesize
-          puts "Invalid Document.".red
+          puts "Invalid Document".red
         else
           assign_attributes
         end
@@ -32,9 +38,9 @@ class FetchDocument < ActiveInteraction::Base
       d.url                 = assign_url
       d.title               = assign_title
       d.description         = assign_description
-      d.best_image_url      = @page.images.best rescue ''
-      d.author              = @page.meta['author'] rescue ''
-      d.keywords            = @page.meta['keywords'].try(:split, ',') rescue []
+      d.best_image_url      = @page.images.best rescue @doc.top_image
+      d.author              = @page.meta['author'] rescue @doc.author
+      d.keywords            = @doc.keywords || @page.meta['keywords'].try(:split, ',') rescue []
       d.charset             = @page.charset rescue ''
       d.og_type             = @page.meta['og:type'] rescue ''
       d.content_type_header = @page.content_type rescue ''
@@ -57,7 +63,7 @@ class FetchDocument < ActiveInteraction::Base
     return @page.meta["twitter:domain"] if @page.meta.keys.include?("twitter:domain")
     return @doc.sitename if @doc.sitename && @doc.sitename.present?
     return @page.host if @page.host && @page.host.present?
-    return PublicSuffix.parse(document.url).domain
+    return PublicSuffix.parse(document.url).domain.gsub(/^www\./, "")
   rescue => e
     puts "#{e.class}: #{e.message}".red
     PublicSuffix.parse(document.url).domain

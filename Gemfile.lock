@@ -144,6 +144,7 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    hash_dot (1.0.0)
     hitimes (1.2.2)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
@@ -322,6 +323,7 @@ DEPENDENCIES
   counter_culture
   foreman
   haml-rails (~> 0.9)
+  hash_dot
   inline_svg
   jquery-rails
   kaminari
