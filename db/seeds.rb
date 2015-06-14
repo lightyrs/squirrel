@@ -142,6 +142,8 @@ text_classifications = [
   'technical explanation',
   'e-book',
   'advertisement',
+  'native advertisement',
+  'recipe',
   'petition',
   'satire',
   'open letter'
