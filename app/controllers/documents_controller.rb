@@ -22,7 +22,7 @@ class DocumentsController < ApplicationController
   def create
     if document_params[:urls] && document_params[:urls].present?
       document_params[:urls].lines.map(&:chomp).each_with_index do |url, i|
-        CreateDocumentWorker.perform_in((3*(i+1)).seconds, url, document_params[:classification])
+        CreateDocumentWorker.perform_in((2*(i+1)).seconds, url, document_params[:classification])
       end
 
       redirect_to documents_path

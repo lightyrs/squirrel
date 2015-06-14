@@ -112,6 +112,7 @@ GEM
     debug_inspector (0.0.2)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
+    dot_hash (0.5.9)
     elasticsearch (1.0.9)
       elasticsearch-api (= 1.0.9)
       elasticsearch-transport (= 1.0.9)
@@ -144,7 +145,6 @@ GEM
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
-    hash_dot (1.0.0)
     hitimes (1.2.2)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
@@ -321,9 +321,9 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   colorize
   counter_culture
+  dot_hash
   foreman
   haml-rails (~> 0.9)
-  hash_dot
   inline_svg
   jquery-rails
   kaminari

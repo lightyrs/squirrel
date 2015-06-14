@@ -3,28 +3,26 @@ class FetchDocument < ActiveInteraction::Base
   object :document
 
   def execute
-    py_doc = `python extractor.py #{document.url}` rescue ""
+    py_doc = `python extractor.py #{document.url}` rescue "{}"
 
-    if @doc = Oj.load(py_doc)
+    if @doc = Oj.load(py_doc).to_properties
+
+      @pismo_doc = Pismo::Document.new(document.url) rescue {body: "", description: "", html_body: ""}
+
+      if @pismo_doc.body.bytesize <= document.classification.min_bytesize
+        @pismo_doc = Pismo::Document.new(document.url, reader: :cluster)
+      end
+
+      if @pismo_doc.body.bytesize <= document.classification.min_bytesize
+        puts "Invalid Document".red
+      end
 
       @page = MetaInspector.new(document.url) rescue nil
 
       if document.persisted?
         refresh_attributes
       else
-        if @doc.body.bytesize <= document.classification.min_bytesize
-          @doc = Pismo::Document.new(document.url)
-        end
-
-        if @doc.body.bytesize <= document.classification.min_bytesize
-          @doc = Pismo::Document.new(document.url, reader: :cluster)
-        end
-
-        if @doc.body.bytesize <= document.classification.min_bytesize
-          puts "Invalid Document".red
-        else
-          assign_attributes
-        end
+        assign_attributes
       end
     end
   end
@@ -45,7 +43,7 @@ class FetchDocument < ActiveInteraction::Base
       d.og_type             = @page.meta['og:type'] rescue ''
       d.content_type_header = @page.content_type rescue ''
       d.body                = @doc.body
-      d.body_html           = @doc.html_body
+      d.body_html           = assign_body_html
     end
   end
 
@@ -94,10 +92,21 @@ class FetchDocument < ActiveInteraction::Base
   end
 
   def assign_description
+    return @pismo_doc.description if @pismo_doc.description && @pismo_doc.description.present?
     return @page.description if @page.description && @page.description.present?
     return @doc.description if @doc.description && @doc.description.present?
   rescue => e
     puts "#{e.class}: #{e.message}".red
     @doc.description
+  end
+
+  def assign_body_html
+    if @doc.html_body && @doc.html_body.bytesize > 500
+      @doc.html_body
+    else
+      @pismo_doc.html_body
+    end
+  rescue => e
+    puts "#{e.class}: #{e.message}".red
   end
 end

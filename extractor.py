@@ -9,7 +9,7 @@ from colorama import *
 def extract():
   url = sys.argv[1:].pop()
 
-  a = Article(url)
+  a = Article(url, keep_article_html=True)
   a.download()
   a.parse()
   a.nlp()
@@ -39,7 +39,7 @@ def extract():
   result['keywords'] = a.keywords
   result['sitename'] = re.sub(r"^www.", "", domain)
 
-  return json.dumps(result, ensure_ascii=False)
+  return json.dumps(result).encode('utf-8')
 
 res = extract()
 sys.stdout.write(res)
