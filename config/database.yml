@@ -1,7 +1,7 @@
 defaults: &defaults
   adapter: postgresql
-  pool: 5
-  timeout: 5000
+  pool: 12
+  timeout: 10000
 
 test:
   <<: *defaults
@@ -16,5 +16,4 @@ development:
 
 production:
   <<: *defaults
-  pool: 12
   database: squirrel-production
