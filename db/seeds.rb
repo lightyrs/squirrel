@@ -124,7 +124,7 @@ text_classifications = [
   'press release',
   'analysis',
   'live blog',
-  'q&a',
+  'faq',
   'contest',
   'audio transcript',
   'video transcript',

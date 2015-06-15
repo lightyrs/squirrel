@@ -21,6 +21,7 @@ gem 'simple_form'
 gem 'sinatra', require: nil
 gem 'counter_culture'
 gem 'dot_hash'
+gem 'redd', '~> 0.7'
 
 ####################################
 ## Assets
