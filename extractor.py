@@ -28,6 +28,7 @@ def extract():
     authors = ""
 
   result = {}
+  result['html'] = a.html
   result['body'] = a.text
   result['title'] = a.title
   result['top_image'] = a.top_image

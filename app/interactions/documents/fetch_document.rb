@@ -17,7 +17,7 @@ class FetchDocument < ActiveInteraction::Base
         puts "Invalid Document".red
       end
 
-      @page = MetaInspector.new(document.url) rescue nil
+      @page = MetaInspector.new(document.url, document: @doc.html) rescue nil
 
       if document.persisted?
         refresh_attributes
