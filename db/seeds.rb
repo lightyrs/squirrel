@@ -112,7 +112,6 @@ text_classifications = [
   'interview',
   'speech',
   'list',
-  'listicle',
   'review',
   'tutorial',
   'comparison',
